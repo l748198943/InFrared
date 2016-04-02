@@ -126,7 +126,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			String iRDD = "{\"action\":\"IRA0\",\"type\":\"LE\",\"code\":\"1c004b024c0e4b024c0e4b02f0054b024c0e4b024c0e4b02f0054b028e764b024c0e4b024c0e4b02f0054b024c0e4b024c0e4b02f0054b028e76\"}";
 			new JsonPost(IRConstants.URL, iRDD, this).persist();
 		} else if (v.equals(but_getInst)) {
-			String iRDD = "{\"action\":\"IRB0\",\"typeId\":\"100001\"}";
+			String iRDD = "{\"action\":\"IRB0\",\"typeId\":\"100005\"}";
 			new JsonPost(IRConstants.URL, iRDD, this).persist();
 		} else if (v.equals(but_ac)) {
 			Intent intent = new Intent(MainActivity.this, ACActivity.class);

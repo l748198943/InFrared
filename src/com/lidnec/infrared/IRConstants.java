@@ -6,13 +6,13 @@ package com.lidnec.infrared;
 public final class IRConstants {
 
 	/**
-	 * 红外码库服务器地址 : 由北京精益理想科技提供
+	 * 红外码库服务器地址
 	 */
 	public static final String URL = "http://123.59.74.10:8086/third-party-service/irdainfo";
 	/**
-	 * 令牌号：由北京精益理想科技提供
+	 * 令牌号
 	 */
-	public static final String TOKEN = "22ED8FB3D3522EB4BADF";
+	public static final String TOKEN = "";
 	
 	
 
