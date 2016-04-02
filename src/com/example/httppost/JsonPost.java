@@ -20,10 +20,11 @@ public class JsonPost {
 	}
 
 	public void persist() {
-//		if (!str.isEmpty()) {
-//			Toast.makeText(currentActivity.getBaseContext(), "data can't empty!", Toast.LENGTH_LONG).show();
-//			return;
-//		}
+		// if (!str.isEmpty()) {
+		// Toast.makeText(currentActivity.getBaseContext(), "data can't empty!",
+		// Toast.LENGTH_LONG).show();
+		// return;
+		// }
 
 		try {
 			HttpClient client = new HttpClient();
