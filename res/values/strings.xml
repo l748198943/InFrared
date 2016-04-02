@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Infrared Test</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="ac_commands_model">模式</string>
+    <string name="ac_commands_power">电源</string>
+    <string name="ac_commands_sweep_wind">扫风</string>
+    <string name="ac_commands_warm_wind">制热</string>
+    <string name="ac_commands_cold_wind">制冷</string>
+    <string name="ac_commands_temperature">温度</string>
+    <string name="ac_commands_wind_sppd">风速</string>
+    <string name="ac_commands_put_wind">风向</string>
+
+    <!-- air conditioner state -->
+    <string name="ac_state_model_cool">制冷</string>
+    <string name="ac_state_model_heat">制热</string>
+    <string name="ac_state_auto">自动</string>
+    <string name="ac_state_model_fan">送风</string>
+    <string name="ac_state_model_dry">除湿</string>
+    <string name="ac_state_speed_low">低风</string>
+    <string name="ac_state_speed_medium">中风</string>
+    <string name="ac_state_speed_high">高风</string>
+
+</resources>
