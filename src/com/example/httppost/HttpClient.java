@@ -1,6 +1,9 @@
 package com.example.httppost;
 
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -18,6 +21,7 @@ import java.io.InputStreamReader;
 public class HttpClient {
 	HttpAsyncTask task;
 	CallBack callback;
+	Handler handler;
 
 	public HttpClient() {
 		this.task = new HttpAsyncTask();
@@ -28,6 +32,12 @@ public class HttpClient {
 		task.setPayload(payload);
 		task.execute();
 		this.callback = callback;
+	}
+	public void performAsyncPost(String url, StringEntity jsonData,Handler handler) {
+		HttpPost payload = buildRequest(url, jsonData);
+		task.setPayload(payload);
+		task.execute();
+		this.handler = handler;
 	}
 
 	private HttpPost buildRequest(String url, StringEntity entity) {
@@ -53,7 +63,12 @@ public class HttpClient {
 
 		@Override
 		protected void onPostExecute(String result) {
-			callback.callback(result);
+//			callback.callback(result);
+			Bundle bundleData = new Bundle();  
+		    bundleData.putString("result", result); 
+			Message message = Message.obtain();
+		    message.setData(bundleData); 
+		    handler.sendMessage(message);
 		}
 	}
 
@@ -94,4 +109,5 @@ public class HttpClient {
 		inputStream.close();
 		return result;
 	}
+	
 }

@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class BooksDB extends SQLiteOpenHelper {
+public class InfraredDB extends SQLiteOpenHelper {
 	private final static String DATABASE_NAME = "Infrared.db";
 	private final static int DATABASE_VERSION = 1;
 
@@ -25,7 +25,7 @@ public class BooksDB extends SQLiteOpenHelper {
 	public final static String IRCODE_INSTCODE = "instcode";
 	public final static String IRCODE_CODE = "code";
 
-	public BooksDB(Context context) {
+	public InfraredDB(Context context) {
 		// TODO Auto-generated constructor stub
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}

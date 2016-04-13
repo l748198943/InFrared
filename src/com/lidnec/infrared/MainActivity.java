@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.example.httppost.JsonPost;
+import com.lidnec.infrared.service.IrCodeService;
+import com.lidnec.infrared.service.IrCodeServiceImpl;
+import com.lidnec.infrared.service.IrdaFixedCode;
+import com.lidnec.infrared.service.IrdaInstCode;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -28,6 +32,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Button but_getInst;
 	private Button but_ac;
 	private ConsumerIrManager ir;
+	
+    private IrCodeService irCodeService; 
 
 
 	private static final int SAMPLE_FREQ = 38400;
@@ -68,6 +74,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			+ "0194024a0194024a0194024a0194024a0194024a0194024a0194024a0194024a0194024a0194024a0194024a0194024a0194024a0194024a0194024a0194024a"
 			+ "0194024a0194024a0194024a0194024a0194024a0194024a0194024a0194024a0194024a0194024a0194024a019402240494024a0194024a0194022404940224"
 			+ "0494024a0194024a0194024a0194024a019402204e";
+	
+	private static String glCode = "9411fe1046022c064602460246022c0646022c06460246024602460246022c06460246024602460246022c06460246024602460246022c0646022c064602460246022c064602460246024602460246024602460246022c0646022c0646022c0646022c0646022c0646022c0646022c0646022c064602460246024602460246024602460246022c0646022c0646022c06460246024602460246024602460246024602460246024602460246024602460246022c0646022c0646022c0646022c0646022c0646028813";
 
 	private static int[] param = { 3742, 1482, 721, 1064, 704, 1059, 704, 335, 700, 335, 700, 335, 700, 1064, 700, 335,
 			699, 335, 699, 1063, 704, 1063, 700, 335, 700, 1063, 700, 335, 700, 335, 700, 1064, 704, 1059, 704, 335,
@@ -104,7 +112,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		but_ac.setOnClickListener(this);
 
 		ir = (ConsumerIrManager) getSystemService(CONSUMER_IR_SERVICE);
-
+		irCodeService = new IrCodeServiceImpl();
 	}
 
 	@Override
@@ -119,11 +127,11 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 		} else if (v.equals(but_send)) {
 			Toast.makeText(this, "∑¢ÀÕ∫ÏÕ‚¬Î", 2000).show();
-			// ir.transmit(SAMPLE_FREQ,
-			// ConversionTools.Tool().leHexStr2Array(testCode));
-			ir.transmit(SAMPLE_FREQ, FilteringTools.Tool().fixedAarry(param));
+			 ir.transmit(SAMPLE_FREQ,
+			 ConversionTools.Tool().leHexStr2Array(glCode));
+//			ir.transmit(SAMPLE_FREQ, FilteringTools.Tool().fixedAarry(param));
 		} else if (v.equals(but_pp)) {
-			String iRDD = "{\"action\":\"IRA0\",\"type\":\"LE\",\"code\":\"1c004b024c0e4b024c0e4b02f0054b024c0e4b024c0e4b02f0054b028e764b024c0e4b024c0e4b02f0054b024c0e4b024c0e4b02f0054b028e76\"}";
+			String iRDD = "{\"action\":\"IRA0\",\"type\":\"LE\",\"code\":\"64009411fe1046022c064602460246022c0646022c06460246024602460246022c06460246024602460246022c06460246024602460246022c0646022c064602460246022c064602460246024602460246024602460246022c0646022c0646022c0646022c0646022c0646022c0646022c0646022c064602460246024602460246024602460246022c0646022c0646022c06460246024602460246024602460246024602460246024602460246024602460246022c0646022c0646022c0646022c0646022c0646028813\"}";
 			new JsonPost(IRConstants.URL, iRDD, this).persist();
 		} else if (v.equals(but_getInst)) {
 			String iRDD = "{\"action\":\"IRB0\",\"typeId\":\"100005\"}";

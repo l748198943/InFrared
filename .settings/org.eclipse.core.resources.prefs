@@ -3,3 +3,7 @@ encoding//src/com/lidnec/infrared/ACActivity.java=UTF-8
 encoding//src/com/lidnec/infrared/ConversionTools.java=UTF-8
 encoding//src/com/lidnec/infrared/FilteringTools.java=UTF-8
 encoding//src/com/lidnec/infrared/IRConstants.java=UTF-8
+encoding//src/com/lidnec/infrared/service/IrCodeService.java=UTF-8
+encoding//src/com/lidnec/infrared/service/IrCodeServiceImpl.java=UTF-8
+encoding//src/com/lidnec/infrared/service/IrdaFixedCode.java=UTF-8
+encoding//src/com/lidnec/infrared/service/IrdaInstCode.java=UTF-8
