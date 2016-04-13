@@ -208,10 +208,9 @@ public class IrCodeServiceImpl implements IrCodeService {
         String result = "";
 //        IrBasicInfo irBasicInfo = irBasicInfoRepository.findByTypeId(typeId);
 //        IrCode irCode = irCodeRepository.findByTypeIdAndInst(typeId, inst);
-//        byte[] resultCode = new byte[irCode.getCode().length() / 2];
 //        String instcode = irCode.getInstCode();
 //        String fixedcode = irBasicInfo.getFixedCode();
-//        byte[] resultCode = new byte[1024];
+
         IrdaFixedCode irdaFixedCode = parserFixedCode(fixedcode);
         IrdaInstCode irdaInstCode = parserInstCode(instcode);
 
@@ -220,7 +219,11 @@ public class IrCodeServiceImpl implements IrCodeService {
         int codeLength = irdaFixedCode.getLeadLength() + irdaInstCode.getLowCount() * irdaFixedCode.getLowLength() +
                 irdaInstCode.getHighCount() * irdaFixedCode.getHighLength() + irdaInstCode.getSyncCount() * irdaFixedCode.getSyncLength()
                 + irdaFixedCode.getStopLength();
-        byte[] resultCode = new byte[codeLength*2];
+        byte[] resultCode = new byte[codeLength];
+//        resultCode[0] = instCode[0];
+//        resultCode[1] = (byte) (codeLength / 2);
+//        resultCode[2] = (byte) ((codeLength / 2) >> 8);
+
         if (irdaFixedCode.getLeadLength() != 0) {
             for (int i = 0; i < irdaFixedCode.getLeadLength(); i++) {
                 resultCode[i] = irdaFixedCode.getLeadCode()[i];
@@ -229,7 +232,7 @@ public class IrCodeServiceImpl implements IrCodeService {
 
         int syncCount = irdaInstCode.getSyncCount();
         List<List<Boolean>> lists = irdaInstCode.getLhFlag();
-        int lhIndex = irdaFixedCode.getLeadLength() + 3;
+        int lhIndex = irdaFixedCode.getLeadLength();
 
         for (int m = 0; m < lists.size(); m++) {
             List<Boolean> list = lists.get(m);

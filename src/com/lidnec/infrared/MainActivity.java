@@ -8,6 +8,7 @@ import com.lidnec.infrared.service.IrCodeService;
 import com.lidnec.infrared.service.IrCodeServiceImpl;
 import com.lidnec.infrared.service.IrdaFixedCode;
 import com.lidnec.infrared.service.IrdaInstCode;
+import com.lindec.androidsqlite.InfraredDB;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -34,6 +35,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	private ConsumerIrManager ir;
 	
     private IrCodeService irCodeService; 
+    
+   // private InfraredDB infraredDB;
 
 
 	private static final int SAMPLE_FREQ = 38400;
@@ -113,6 +116,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		ir = (ConsumerIrManager) getSystemService(CONSUMER_IR_SERVICE);
 		irCodeService = new IrCodeServiceImpl();
+		//infraredDB = new InfraredDB(this);
 	}
 
 	@Override
@@ -127,8 +131,15 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 		} else if (v.equals(but_send)) {
 			Toast.makeText(this, "发送红外码", 2000).show();
+			
+//			 ir.transmit(SAMPLE_FREQ,
+//			 ConversionTools.Tool().leHexStr2Array(glCode));
+			//固定码和变化码
+			String result = irCodeService.combineIrCode("2601029411fe1002460246020246022c06024602881300", "0130004DB2F00F07F80000");
+			System.out.println("----result----:"+result);
 			 ir.transmit(SAMPLE_FREQ,
-			 ConversionTools.Tool().leHexStr2Array(glCode));
+					 ConversionTools.Tool().leHexStr2Array(result));
+			 //数据过滤，并发送
 //			ir.transmit(SAMPLE_FREQ, FilteringTools.Tool().fixedAarry(param));
 		} else if (v.equals(but_pp)) {
 			String iRDD = "{\"action\":\"IRA0\",\"type\":\"LE\",\"code\":\"64009411fe1046022c064602460246022c0646022c06460246024602460246022c06460246024602460246022c06460246024602460246022c0646022c064602460246022c064602460246024602460246024602460246022c0646022c0646022c0646022c0646022c0646022c0646022c0646022c064602460246024602460246024602460246022c0646022c0646022c06460246024602460246024602460246024602460246024602460246024602460246022c0646022c0646022c0646022c0646022c0646028813\"}";
