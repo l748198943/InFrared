@@ -263,7 +263,9 @@ public class IrCodeServiceImpl implements IrCodeService {
                 lhIndex++;
             }
         }
-        result = ConversionTools.Tool().bytes2HexStr(resultCode, false);
+        for(int i = 0 ;i< irdaInstCode.getSendCount();i++){
+            result = result + ConversionTools.Tool().bytes2HexStr(resultCode, false);
+        }
         return result;
     }
 }

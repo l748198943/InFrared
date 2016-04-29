@@ -133,9 +133,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			Toast.makeText(this, "发送红外码", 2000).show();
 			
 //			 ir.transmit(SAMPLE_FREQ,
-//			 ConversionTools.Tool().leHexStr2Array(glCode));
+//			 ConversionTools.Tool().leHexStr2Array("79037903790379037903790379037903f206f206f2067903790379037903f206f2067903790379037903b3c8"));
 			//固定码和变化码
-			String result = irCodeService.combineIrCode("2601029411fe1002460246020246022c06024602881300", "0130004DB2F00F07F80000");
+			String result = irCodeService.combineIrCode("2601029411fe1002460246020246022c06024602881300", "0230004DB2F80712ED0000");
 			System.out.println("----result----:"+result);
 			 ir.transmit(SAMPLE_FREQ,
 					 ConversionTools.Tool().leHexStr2Array(result));
